@@ -13,12 +13,15 @@ public class ColorController : MonoBehaviour
 
     #region Singleton
     public static ColorController instance;
-    private static ColorController _instance;
+    private static ColorController _instance = null;
     #endregion
 
     private void Awake()
     {
-        _instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+        }
     }
 
     // Update is called once per frame

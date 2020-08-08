@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CoroutineSample.unity
+- path: Assets/Scenes/ObjPool Example.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

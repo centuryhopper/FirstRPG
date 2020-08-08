@@ -49,7 +49,10 @@
      <Compile Include="Assets\Scripts\ShootRay.cs" />
      <Compile Include="Assets\Scripts\Stats\BaseStats.cs" />
      <Compile Include="Assets\Scripts\Trigonometry\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\ActionExample.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\PredicateExample.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\MoreNullables.cs" />
      <Compile Include="Assets\Scripts\Combat\EnemyHealthDisplay.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponPickUp.cs" />
      <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
@@ -93,9 +96,12 @@
      <Compile Include="Assets\Scripts\Planet scripts\Planet.cs" />
      <Compile Include="Assets\Scripts\Stats\Experiences.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\Indexers.cs" />
      <Compile Include="Assets\Scripts\Resources\HealthDisplay.cs" />
      <Compile Include="Assets\Scripts\Stats\Progression.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\FuncExample.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
+     <Compile Include="Assets\Scripts\ObjectPoolScripts\PartialClasses.cs" />
      <Compile Include="Assets\Scripts\Cinematic Scripts\CinematicController.cs" />
      <Compile Include="Assets\Scripts\ObjectPoolScripts\ColorController.cs" />
      <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
@@ -111,12 +117,7 @@
      <Compile Include="Assets\Scripts\Core\PersistentObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\PartialClasses.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\Indexers.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\MoreNullables.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\FuncExample.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\ActionExample.cs" />
-     <Compile Include="Assets\Scripts\ObjectPoolScripts\PredicateExample.cs" />
+     <Compile Include="Assets\Scripts\Trigonometry\My scripts\Oscillator.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
