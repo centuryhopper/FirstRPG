@@ -35,7 +35,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8315390468735499322}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736eb169a5fb44f469cedfc6f9b2c1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorMappings: []
+  maxPathLength: 40
 --- !u!114 &2078870444728165391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ad2310962f649e58a1d7961c22f519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  damageTextSpawner: {fileID: 2639870138934561390}
 --- !u!114 &2764365894608684033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +202,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62aa51f2ad4234fb69186bbe29ac2590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLevel: 1
   characterClass: 1
   progression: {fileID: 11400000, guid: aba12b2dd8d784fa586b528b16536e3c, type: 2}
+  particleEffectForLevelUp: {fileID: 0}
+  shouldUseModifiers: 0
+--- !u!1 &774501087149950766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8315390468735499322}
+  - component: {fileID: 2639870138934561390}
+  m_Layer: 0
+  m_Name: DamageHUD Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8315390468735499322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774501087149950766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 303967576450396670}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2639870138934561390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774501087149950766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a11a2deff70428a8dca962fddba2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageHUDPrefab: {fileID: 7182419154761591156, guid: b66afa8e527cd400ca7176aeb53d514e,
+    type: 3}

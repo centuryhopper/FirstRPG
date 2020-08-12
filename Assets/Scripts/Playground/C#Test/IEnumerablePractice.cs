@@ -43,7 +43,7 @@ public class IEnumerablePractice
 
     static double[] data = new double[10000000];
 
-    [RuntimeInitializeOnLoadMethod]
+    // [RuntimeInitializeOnLoadMethod]
     static void MainMethod()
     {
         // #1
@@ -126,3 +126,51 @@ public class IEnumerablePractice
         UnityEngine.Debug.Log(msg);
     }
 }
+
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
+// using System.Net;
+
+// namespace problem2
+// {
+//     class Program
+//     {
+//         static string text = "<div id="text">";
+//         static string divEnd = "</div>";
+
+//         static void Main(string[] args)
+//         {
+//             try
+//             {
+//                 WebClient wc = new WebClient();
+//                 string htmlData = wc.DownloadString("http://rickleinecker.com/Rick-Leinecker-Magazine-Articles-and-Writing.html%22);
+
+//                 int index = htmlData.IndexOf(text);
+
+//                 while (index >= 0)
+//                 {
+//                     int endIndex = htmlData.IndexOf(divEnd, index);
+//                     string fText = htmlData.Substring(index + text.Length, endIndex - (index + text.Length)).Trim();
+
+//                     String[] words;
+
+//                     words = fText.Split(' ');
+
+//                     if (words[0][0] != 'C')
+//                         break;
+
+//                     Console.WriteLine("Magazine:" + words[0] + ", Number:" + words[1] + ", Date:" + words[2]);
+
+//                     index = endIndex;
+//                     index = htmlData.IndexOf(text, index);
+//                 }
+//             }
+//             catch
+//             {
+//                 return;
+//             }
+//         }
+//     }
+// }

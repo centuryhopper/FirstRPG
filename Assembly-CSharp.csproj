@@ -36,7 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Resources\Health.cs" />
+     <Compile Include="Assets\Scripts\Attributes\Health.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\NullableTypesExamples.cs" />
      <Compile Include="Assets\Scripts\Controller\PatrolPath.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\CubeSpawner.cs" />
@@ -50,12 +50,15 @@
      <Compile Include="Assets\Scripts\ShootRay.cs" />
      <Compile Include="Assets\Scripts\Stats\BaseStats.cs" />
      <Compile Include="Assets\Scripts\Playground\Trigonometry\MouseLook.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\DirectReference.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\ActionExample.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\DIspawner.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\PredicateExample.cs" />
      <Compile Include="Assets\Scripts\Playground\Event practice\SimpleSpawner.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\MoreNullables.cs" />
      <Compile Include="Assets\Scripts\Combat\EnemyHealthDisplay.cs" />
+     <Compile Include="Assets\Scripts\UI\Damage Text\DamageHUD.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponPickUp.cs" />
      <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\Cinematic Scripts\CinematicTrigger.cs" />
@@ -71,16 +74,19 @@
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\Cube.cs" />
      <Compile Include="Assets\Scripts\Playground\Event practice\ScoreManagerWithEvents.cs" />
      <Compile Include="Assets\Scripts\Stats\CharacterClass.cs" />
+     <Compile Include="Assets\Scripts\Core\CameraFacing.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\SceneParentLife.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMessage.cs" />
      <Compile Include="Assets\Scripts\Cinematic Scripts\FakePlayableDirector.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\StructExample.cs" />
      <Compile Include="Assets\Scripts\Saving\SavingSystem.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\SingletonCaller.cs" />
      <Compile Include="Assets\Scripts\Movement\Mover.cs" />
      <Compile Include="Assets\Scripts\Combat\Projectile.cs" />
      <Compile Include="Assets\Scripts\Stats\Stat.cs" />
      <Compile Include="Assets\Scripts\Playground\Trigonometry\TrigTools.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\SingletonScoreManager.cs" />
      <Compile Include="Assets\Scripts\Playground\Trigonometry\My scripts\CircleOfCircles.cs" />
      <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\TrigFunctions.cs" />
@@ -94,6 +100,7 @@
      <Compile Include="Assets\Scripts\Playground\Trigonometry\CharacterMotor.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
      <Compile Include="Assets\Scripts\Stats\LevelDisplay.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScriptableScoreManager.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Fader.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveableEntity.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\ObjectPooler.cs" />
@@ -101,14 +108,18 @@
      <Compile Include="Assets\Scripts\Playground\Planet scripts\Planet.cs" />
      <Compile Include="Assets\Scripts\Stats\Experiences.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\FindObjectofType.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\Indexers.cs" />
-     <Compile Include="Assets\Scripts\Resources\HealthDisplay.cs" />
+     <Compile Include="Assets\Scripts\Controller\IRaycastable.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScriptableObjWay.cs" />
+     <Compile Include="Assets\Scripts\Attributes\HealthDisplay.cs" />
      <Compile Include="Assets\Scripts\Stats\Progression.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\FuncExample.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\PartialClasses.cs" />
      <Compile Include="Assets\Scripts\Cinematic Scripts\CinematicController.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\ColorController.cs" />
+     <Compile Include="Assets\Scripts\UI\Damage Text\DamageTextSpawner.cs" />
      <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
      <Compile Include="Assets\Scripts\Stats\ExperiencesDisplay.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
@@ -122,8 +133,9 @@
      <Compile Include="Assets\Scripts\Core\PersistentObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
-     <Compile Include="Assets\Scripts\Controller\IRaycastable.cs" />
      <Compile Include="Assets\Scripts\Controller\CursorType.cs" />
+     <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScoreManager0.cs" />
+     <Compile Include="Assets\Scripts\Attributes\HealthBar.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

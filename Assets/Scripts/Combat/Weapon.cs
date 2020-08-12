@@ -1,4 +1,4 @@
-﻿using RPG.Resources;
+﻿using RPG.Attributes;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -22,6 +22,7 @@ namespace RPG.Combat
             return projectile != null;
         }
         
+        // additive modifier amount from weapon damage
         [SerializeField] int _weaponDamage = 5;
         public int weaponDamage
         {

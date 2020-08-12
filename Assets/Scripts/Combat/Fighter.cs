@@ -5,7 +5,7 @@ using UnityEngine;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
-using RPG.Resources;
+using RPG.Attributes;
 using RPG.Stats;
 using GameDevTV.Utils;
 
@@ -120,7 +120,7 @@ namespace RPG.Combat
         {
             if (timeSinceLastAttack > timeBetweenAttacks && target.show_current_health > 0)
             {
-                Debug.Log("killing enemy!!");
+                // Debug.Log("killing enemy!!");
                 TriggerAttack();
                 timeSinceLastAttack = 0;
             }

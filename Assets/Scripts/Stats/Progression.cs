@@ -11,6 +11,8 @@ namespace RPG.Stats
         [SerializeField] ProgressionCharacterClass[] progressionClasses;
         Dictionary<CharacterClass, Dictionary<StatEnum, int[]>> lookUpTable = null;
 
+        // Root getstat method that actually returns the value in a desired index of the array
+        // of values
         public int GetStats(StatEnum stat, CharacterClass name, int index)
         {
             // search for the right character class

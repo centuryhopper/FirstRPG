@@ -4,7 +4,7 @@ using UnityEngine;
 // predicate delegate takes only one input and returns a boolean
 public class PredicateExample
 {
-    [RuntimeInitializeOnLoadMethod]
+    // [RuntimeInitializeOnLoadMethod]
     static void MainMethod()
     {
         Predicate<int> isOdd = IsOdd;

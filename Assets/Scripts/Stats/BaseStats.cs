@@ -87,9 +87,10 @@ namespace RPG.Stats
             if (!shouldUseModifiers) { return 0; }
 
             int sum = 0;
+            IModifierProvider[] components = GetComponents<IModifierProvider>();
 
             // get all interface components
-            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
+            foreach (IModifierProvider provider in components)
             {
 
                 foreach (int modifier in provider.GetAdditiveModifier(stat))
@@ -101,13 +102,17 @@ namespace RPG.Stats
             return sum;
         }
 
+        // from progression
         private float GetPercentageModifiers(StatEnum stat)
         {
             // only the player should get modifier bonuses
             if (!shouldUseModifiers) { return 0; }
 
             float sum = 0;
-            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
+            IModifierProvider[] components = GetComponents<IModifierProvider>();
+
+            // get all interface components
+            foreach (IModifierProvider provider in components)
             {
                 foreach (float modifier in provider.GetPercentageModifiers(stat))
                 {
