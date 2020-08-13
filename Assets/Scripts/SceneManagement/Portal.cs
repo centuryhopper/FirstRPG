@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using RPG.Control;
 
 namespace RPG.SceneManagement
 {
@@ -16,7 +18,15 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneIndex = -1;
         [SerializeField] PortalID iD;
         [SerializeField] SceneParentLife s;
+        [SerializeField] float waitTime = 10, fadeInTime = 0.5f, fadeOutTime = 0.5f;
 
+        PlayerController playerController;
+        public static event Action DestroyParentGameObj = delegate {  };
+
+        private void Awake()
+        {
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -32,7 +42,10 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad(gameObject.transform.parent);
             Fader fader = FindObjectOfType<Fader>();
 
-            yield return fader.FadeOut(2.5f);
+            // remove old player controller to avoid glitches
+            playerController.enabled = false;
+
+            yield return fader.FadeOut(fadeOutTime);
 
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
 
@@ -40,6 +53,11 @@ namespace RPG.SceneManagement
             savingWrapper.Save();
             // transition to the scene with 'sceneIndex' index
             yield return SceneManager.LoadSceneAsync(sceneIndex);
+            // theoretically removes new player controller to avoid glitches
+            // TODO may need to call gameobject.find again for the new player
+            // if this doesn't work
+            playerController.enabled = false;
+
             // load the the last state of the other world you are going to transition to
             savingWrapper.Load();
 
@@ -53,13 +71,20 @@ namespace RPG.SceneManagement
             savingWrapper.Save();
 
             // stall for .5 seconds
-            yield return new WaitForSeconds(0.5f);
-            yield return fader.FadeIn(2.5f);
+            yield return new WaitForSeconds(waitTime);
 
+            // runs in the background as a coroutine
+            // so that the player controls can be re-enabled
+            // asynchronously
+            fader.FadeIn(fadeInTime);
+            
 
-            // Destroy(gameObject);
-            s.toToggleInPortalClass = true;
+            // theoretically restores new player player controller
+            playerController.enabled = true;
 
+            // destroys the parent gameobject
+            // s.toToggleInPortalClass = true;
+            DestroyParentGameObj();
         }
 
         Portal GetOtherPortal()

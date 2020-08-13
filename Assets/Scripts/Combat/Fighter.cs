@@ -21,16 +21,16 @@ namespace RPG.Combat
         [SerializeField] Transform leftHand = null;
 
         // player should not have any weapons on start unless you're debugging
-        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] WeaponConfig defaultWeapon = null;
         // [SerializeField] string defaultWeaponName = "Unarmed";
 
         // this will be used throughout the script
-        LazyValue<Weapon> currentWeapon = null;
+        LazyValue<WeaponConfig> currentWeapon = null;
 
         private void Awake()
         {
             anim = GetComponent<Animator>();
-            currentWeapon = new LazyValue<Weapon>(SetUpDefaultWeapon);
+            currentWeapon = new LazyValue<WeaponConfig>(SetUpDefaultWeapon);
         }
 
         void Start()
@@ -44,26 +44,29 @@ namespace RPG.Combat
             return target == null ? null : target;
         }
 
-        public Weapon SetUpDefaultWeapon()
+        public WeaponConfig SetUpDefaultWeapon()
         {
             AttachWeapon(defaultWeapon);
             return defaultWeapon;
         }
 
-        public void AttachWeapon(Weapon myWeapon)
+        public void AttachWeapon(WeaponConfig myWeapon)
         {
             // we always pass in the transforms of both hands
             // so that the Weapon script can use either or at its disposal
-            myWeapon.Spawn(leftHand, rightHand, anim);
+            myWeapon.SpawnWeapon(leftHand, rightHand, anim);
         }
 
-        public void EquipWeapon(Weapon myWeapon)
+        public void EquipWeapon(WeaponConfig myWeapon)
         {
             currentWeapon.value = myWeapon;
             AttachWeapon(myWeapon);
         }
 
-
+        // animations happen in update,
+        // the actual animations themselves
+        // invoke a method called hit() or shoot() for
+        // projectiles and give damage to the victim
         void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -94,6 +97,7 @@ namespace RPG.Combat
         {
             if (target == null || target.show_current_health <= 0) return;
 
+            // calculate damage
             int doDamage = GetComponent<BaseStats>().GetStats(StatEnum.Damage);
 
             if (currentWeapon.value.HasProjectile())
@@ -120,7 +124,6 @@ namespace RPG.Combat
         {
             if (timeSinceLastAttack > timeBetweenAttacks && target.show_current_health > 0)
             {
-                // Debug.Log("killing enemy!!");
                 TriggerAttack();
                 timeSinceLastAttack = 0;
             }
@@ -180,7 +183,7 @@ namespace RPG.Combat
             string restoredWeaponName = state as string;
 
             // create weapon object loaded from the Resources folder
-            Weapon restoredWeapon = UnityEngine.Resources.Load<Weapon>(restoredWeaponName);
+            WeaponConfig restoredWeapon = UnityEngine.Resources.Load<WeaponConfig>(restoredWeaponName);
 
             // equip it to the character this script is attached to
             EquipWeapon(restoredWeapon);
@@ -198,6 +201,8 @@ namespace RPG.Combat
 
         public IEnumerable<float> GetPercentageModifiers(StatEnum stat)
         {
+            // only the damage component should be modified,
+            // so we have to make this check
             if (stat == StatEnum.Damage)
             {
                 yield return currentWeapon.value.percentageBonus;

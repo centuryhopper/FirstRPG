@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  maxSpeed: 6
+  maxSpeed: 3
 --- !u!1001 &2052969903029558995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,6 +271,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 576c4eb62679c40639c9064ee7267fee,
         type: 2}
+    - target: {fileID: 4763185602878197945, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7207249611421009715, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
       propertyPath: m_Enabled
@@ -279,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 8315390468735499322, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8315390468735499322, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}

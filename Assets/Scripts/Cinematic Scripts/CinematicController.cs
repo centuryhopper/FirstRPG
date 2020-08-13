@@ -34,22 +34,23 @@ namespace RPG.Cinematics
             GetComponent<PlayableDirector>().stopped -= EnablePlayerControl;
         }
 
+        // placeholder parameter
         void DisablePlayerControl(PlayableDirector stuff)
         {
             if (pc != null)
             {
-                Debug.Log("disabling control");
+                print("disabling control");
                 actionScheduler.CancelCurrentAction();
                 pc.enabled = false;
             }
-            
         }
 
+        // placeholder parameter
         void EnablePlayerControl(PlayableDirector stuff)
         {
             if (pc != null)
             {
-                Debug.Log("enabling control");
+                print("enabling control");
                 pc.enabled = true;
             }
         }

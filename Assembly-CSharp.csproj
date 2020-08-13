@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Combat\WeaponPickUp.cs" />
      <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\Cinematic Scripts\CinematicTrigger.cs" />
+     <Compile Include="Assets\Scripts\Attributes\HealthBar.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoHideScriptField.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\BrandiMood.cs" />
@@ -125,7 +126,7 @@
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
      <Compile Include="Assets\Asset Packs\GameDev.tv Assets\Scripts\Utils\LazyValue.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Combat\Weapon.cs" />
+     <Compile Include="Assets\Scripts\Combat\WeaponConfig.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\CustomColor.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\MyClass.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\ListExample.cs" />
@@ -135,7 +136,7 @@
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
      <Compile Include="Assets\Scripts\Controller\CursorType.cs" />
      <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScoreManager0.cs" />
-     <Compile Include="Assets\Scripts\Attributes\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\Combat\Weapon.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

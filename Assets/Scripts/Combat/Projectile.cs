@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Core;
 using System;
 using RPG.Attributes;
+using UnityEngine.Events;
 
 namespace RPG.Combat
 {
@@ -29,8 +30,16 @@ namespace RPG.Combat
     
         // the program is structured so that this method
         // would be called after a target has been set
+
+        // when the projectile hits the target
+        [SerializeField] UnityEvent projectileSounds = null;
+        [SerializeField] float lifeAfterImpact = 2;
+
         private void OnTriggerEnter(Collider other)
         {
+            // play projectile hit sound
+            projectileSounds.Invoke();
+
             if (particleEffect != null)
             {
                 GameObject impact = Instantiate(particleEffect, GetAimLocation(),
@@ -41,11 +50,14 @@ namespace RPG.Combat
             if (other.GetComponent<Health>() == myTarget && !myTarget.isDead)
             {
                 print(myTarget.name + " has been hit");
+
                 myTarget.TakeDamage(myDamage, instigator);
-                Destroy(gameObject);
+                Destroy(gameObject, lifeAfterImpact);
             }
             else
             {
+                // clean up objects that dont hit anything which would potentially
+                // fly off forever
                 return;
             }
         }

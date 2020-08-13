@@ -10,10 +10,16 @@ namespace RPG.Attributes
         [SerializeField] RectTransform foregroundRectTransform = null;
         [SerializeField] Canvas canvas = null;
 
-        void Start()
+        private void OnEnable()
         {
             // subscribe (point the action to the method)
             Health.onHealthChange += HandleHealth;
+        }
+
+        private void OnDisable()
+        {
+            // subscribe (point the action to the method)
+            Health.onHealthChange -= HandleHealth;
         }
 
         // get health component percentage decimal value, then assign

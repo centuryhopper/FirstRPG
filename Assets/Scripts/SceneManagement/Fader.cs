@@ -10,7 +10,6 @@ namespace RPG.SceneManagement
 
         float fadingTime = 2.5f;
 
-
         private void Awake()
         {
             canvasGroup = GetComponent<CanvasGroup>();
@@ -25,52 +24,71 @@ namespace RPG.SceneManagement
             }
         }
 
-        public IEnumerator FadeOut(float fadeTime)
+        // target = 1 for fadeout and target = 0 for fadein
+        public IEnumerator FadeRoutine(float target, float fadeTime)
         {
-            print("lerping alpha");
-
-            // move alpha towards 1
-            while (canvasGroup.alpha < 1f)
+            // move alpha towards target
+            while (!Mathf.Approximately(canvasGroup.alpha, target))
             {
-                // deltatime over the given time (in seconds) we want the game to take fading
-                canvasGroup.alpha += Time.deltaTime / fadeTime;
+                // deltatime over the given time (in seconds) we
+                // want the game to take fading
+                canvasGroup.alpha = 
+                    Mathf.MoveTowards(canvasGroup.alpha, target, Time.deltaTime / fadeTime);
 
                 // delays the coroutine from running by one frame
                 yield return null;
             }
         }
 
-        public IEnumerator FadeIn(float fadeTime)
+        Coroutine currentlyActiveFade = null;
+        public Coroutine FadeCheck(float target, float fadeTime)
         {
-            print("faded in");
-
-            if (canvasGroup == null) {yield break;}
-
-            // move alpha towards 1
-            while (canvasGroup.alpha > 0f)
+            // stop the currently active coroutine, if any
+            if (currentlyActiveFade != null)
             {
-                // deltatime over the given time (in seconds) we want the game to take fading
-                canvasGroup.alpha -= Time.deltaTime / fadeTime;
-
-                // delays the coroutine from running by one frame
-                yield return null;
+                StopCoroutine(currentlyActiveFade);
             }
+
+            // assign and run the new coroutine
+            currentlyActiveFade = StartCoroutine(FadeRoutine(target, fadeTime));
+
+            return currentlyActiveFade;
         }
+
+        // avoids race condition between fadeout and fade in
+        // can yield return coroutine, null, 0, ienumerators, waitforseconds....
+        public Coroutine FadeOut(float fadeTime)
+        {
+            return FadeCheck(1, fadeTime);
+        }
+
+        public Coroutine FadeIn(float fadeTime)
+        {
+            return FadeCheck(0, fadeTime);           
+        }
+        
+
+
+
+
+
+
+
+
 
         // This is a coroutine that runs other coroutines (nested concept),
         // and coroutines, in general, can have as many 'yield return' statements as desired
-        IEnumerator FadeOutThenFadeIn()
-        {
-            yield return FadeOut(fadingTime);
-            print("faded out and delaying for 3 seconds");
+        // IEnumerator FadeOutThenFadeIn()
+        // {
+        //     yield return FadeOut(fadingTime);
+        //     print("faded out and delaying for 3 seconds");
 
-            // yield return new WaitForSeconds(3f);
-
+        //     // yield return new WaitForSeconds(3f);
             
-            yield return FadeIn(fadingTime);
-            print("faded back in");
-        }
+        //     yield return FadeIn(fadingTime);
+        //     print("faded back in");
+        // }
 
-        // yield return null delays the coroutine from running by one frame
+        // yield return null and yield return 0 delays the coroutine from running by one frame
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fb3cbeed4ee450787ed101864f9bbf, type: 3}
   m_Name: Enemy Bow
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 4026096509080522792, guid: 6cc5b5372807f4e8b97c8bc30d8eba91,
+  equippedPrefab: {fileID: 247785643649045911, guid: 6cc5b5372807f4e8b97c8bc30d8eba91,
     type: 3}
   weaponOverrider: {fileID: 22100000, guid: 65d5201b251264f5a8fa727e9235407b, type: 2}
   _weaponRange: 10
@@ -20,3 +20,4 @@ MonoBehaviour:
   projectile: {fileID: 3909732602301418720, guid: 0d060885f7f6a4dd099048a1f02dd7fe,
     type: 3}
   _weaponDamage: 5
+  _percentageBonus: 0

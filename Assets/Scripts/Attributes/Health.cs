@@ -28,10 +28,15 @@ namespace RPG.Attributes
         BaseStats  baseStats;
 
         [SerializeField] DamageTextSpawner damageTextSpawner;
+
+        [Header("Unity Events")]
+        [SerializeField] UnityEvent takeDamageSound = null, onDieSound = null;
         
         // might make non-static and just create reference
         // in HealthBar.cs instead later
-        public static event Action onHealthChange;
+        // empty delegate so that we don't have to perform null checks
+        public static event Action onHealthChange = delegate { };
+
 
         private void Awake()
         {
@@ -99,13 +104,23 @@ namespace RPG.Attributes
 
             if (health.value <= 0)
             {
+                // play death sound
+                // we don't invoke death sound in Die()
+                // bc it also gets called in restorestate()
+                // and we don't want to potentially
+                //  make that sound when travelling between worlds
+                onDieSound.Invoke();
                 Die();
                 AwardEXP(instigator);
             }
             else
             {
                 print("damaging " + this.gameObject.name);
-                // spawn a floating damage display
+
+
+                takeDamageSound.Invoke();
+
+                // spawn a floating and fading damage display
                 damageTextSpawner.Spawn(damage);
             }
         }

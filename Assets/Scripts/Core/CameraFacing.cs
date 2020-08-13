@@ -17,7 +17,9 @@ namespace RPG.Core
             cam = Camera.main;
         }
 
-        void Update()
+        // we'll use lateupdate so that the health bar rotation
+        // will not conflict with parent transform
+        private void LateUpdate()
         {
             // always look at camera
             // transform.LookAt(cam.transform);

@@ -10,11 +10,10 @@ namespace RPG.Combat
 {
     public class WeaponPickUp : MonoBehaviour, IRaycastable
     {
-        [SerializeField] Weapon weapon = null;
+        [SerializeField] WeaponConfig weapon = null;
 
         [Label("Pickup hiding time")]
         [SerializeField] float secs = 5;
-
         GameObject myChild;
         SphereCollider mySphereCollider;
 

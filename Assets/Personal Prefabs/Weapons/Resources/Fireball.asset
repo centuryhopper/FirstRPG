@@ -19,3 +19,7 @@ MonoBehaviour:
   projectile: {fileID: 5285349893231233388, guid: 8126cb8ec12cf40c58e4eff0c4414162,
     type: 3}
   _weaponDamage: 10
+  _percentageBonus: 0
+  launchProjectileSound:
+    m_PersistentCalls:
+      m_Calls: []
