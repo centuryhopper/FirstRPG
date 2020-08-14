@@ -10,7 +10,6 @@ using System.Threading;
 
 public class IEnumerablePractice
 {
-
     // myFilter1 takes a sequence of integers with values from 0 to 100
     // It removes all multiples of 7 greater than 75
     // Each number is then squared
@@ -43,9 +42,60 @@ public class IEnumerablePractice
 
     static double[] data = new double[10000000];
 
+    static string text = "<div id=\"text\">";
+    static string divEnd = "</div>";
+
     // [RuntimeInitializeOnLoadMethod]
     static void MainMethod()
     {
+
+        string searchString = "k";
+        string s1 = "seek" ;
+        string s2 = "leineker";
+
+        // returns the index of the a specified string.
+        // the specified starting index is used to improved search times
+        // for super long strings e.g. if I want ot search for "f" in "abcdefg",
+        // i can say "abcdefg".indexOf("f", 4), which would start the search at "e" instead
+        // of "abcdefg".indexOf("f"), which would start the search at "a"
+        // print(s1.IndexOf(searchString, 0));
+        // print(s2.IndexOf(searchString, 3));
+
+        // print("abcdefg".IndexOf("f"));
+
+        print("leooo".LastIndexOf("o"));
+
+
+
+        // try
+        // {
+        //     WebClient wc = new WebClient();
+        //     string htmlData = 
+        //     wc.DownloadString("http://rickleinecker.com/Rick-Leinecker-Magazine-Articles-and-Writing.html");
+
+        //     int index = htmlData.IndexOf(text);
+
+        //     while (index >= 0)
+        //     {
+        //         int endIndex = htmlData.IndexOf(divEnd, index);
+        //         string fText = htmlData.Substring(index + text.Length, endIndex - (index + text.Length)).Trim();
+
+        //         String[] words = fText.Split(' ');
+
+        //         if (words[0][0] != 'C')
+        //             break;
+
+        //         print("Magazine:" + words[0] + ", Number:" + words[1] + ", Date:" + words[2]);
+
+        //         index = htmlData.IndexOf(text, endIndex);
+        //     }
+        // }
+        // catch(Exception e)
+        // {
+        //     print(e.StackTrace);
+        //     return;
+        // }
+
         // #1
         // Important to seed with 5 for repeatability.
         // System.Random rnd = new System.Random(5);
@@ -75,10 +125,10 @@ public class IEnumerablePractice
 
 
         // #3
-        
+
 
         // single threaded
-        Stopwatch stopwatch = new Stopwatch();
+        // Stopwatch stopwatch = new Stopwatch();
         // stopwatch.Start();
         // for (int i = 0; i < data.Length; ++i)
         // {
@@ -88,35 +138,35 @@ public class IEnumerablePractice
         // stopwatch.Stop();
         // print("time in miliseconds: " + stopwatch.ElapsedMilliseconds);
 
-        Thread[] threads = new Thread[4];
-        int upperBound = data.Length / threads.Length;
-        print(upperBound);
+        // Thread[] threads = new Thread[4];
+        // int upperBound = data.Length / threads.Length;
+        // print(upperBound);
 
-        stopwatch.Start();
-        
-        for (int i = 0; i < threads.Length; ++i)
-        {
-            // the i passed into longtask isn't working, so we make a local tmp variable and make it work
-            int j = i;
-            threads[i] = new Thread( delegate () { LongTask(j * upperBound, upperBound); } );
-            // threads[i] = new Thread(() => LongTask(j * upperBound, upperBound));
-            threads[i].Start();
-        }
+        // stopwatch.Start();
 
-        foreach (Thread t in threads)
-        {
-            t.Join();
-        }
-        stopwatch.Stop();
+        // for (int i = 0; i < threads.Length; ++i)
+        // {
+        //     // the i passed into longtask isn't working, so we make a local tmp variable and make it work
+        //     int j = i;
+        //     threads[i] = new Thread( delegate () { LongTask(j * upperBound, upperBound); } );
+        //     // threads[i] = new Thread(() => LongTask(j * upperBound, upperBound));
+        //     threads[i].Start();
+        // }
 
-        print("time in miliseconds: " + stopwatch.ElapsedMilliseconds);
+        // foreach (Thread t in threads)
+        // {
+        //     t.Join();
+        // }
+        // stopwatch.Stop();
+
+        // print("time in miliseconds: " + stopwatch.ElapsedMilliseconds);
     }
 
     static void LongTask(int startingIndex, int reps)
     {
         for (int idx = startingIndex; idx < startingIndex + reps; ++idx)
         {
-            data[idx] = (int) (Math.Sin(idx) + Math.Cos(idx) + Math.Tan(idx)
+            data[idx] = (int)(Math.Sin(idx) + Math.Cos(idx) + Math.Tan(idx)
                     + Math.Sinh(idx) + Math.Cosh(idx) + Math.Tanh(idx));
         }
     }

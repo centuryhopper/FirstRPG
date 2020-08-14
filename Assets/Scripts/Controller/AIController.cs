@@ -26,6 +26,8 @@ namespace RPG.Control
 
         [Range(0,1)]
         [SerializeField] float patrolSpeedFraction = .2f;
+
+        [SerializeField] float shoutDistance = 5f;
         int waypointIndex = 0;
         float tolerableDistance = 1f;
 
@@ -60,20 +62,16 @@ namespace RPG.Control
         {
             if (myHealth.isDead) { return; }
 
-            if (InAttackRange() && fighter.CanAttack(player))
+            if (IsAggrevated() && fighter.CanAttack(player))
             {
-                Debug.Log(gameObject.name + " is chasing the player");
-                timeLastSeenPlayer = 0;
-
-                // Attack behaviour
-                fighter.Attack(player);
+                AttackBehaviour();
             }
             // will come into this condition upon player leaving the enemy chase radius
             else if (timeLastSeenPlayer < suspicionTime)
             {
                 // guard gets suspicious so we cancel any action this enemy was going to perform
                 // suspicion behavior
-                actionScheduler.CancelCurrentAction();
+                SuspicionBehaviour();
             }
             else
             {
@@ -86,7 +84,49 @@ namespace RPG.Control
             }
 
             timeLastSeenPlayer += Time.deltaTime;
+            aggrevated += Time.deltaTime;
             // timeAtWayPoint += Time.deltaTime;
+        }
+
+        private void AttackBehaviour()
+        {
+            print(gameObject.name + " is chasing the player");
+            timeLastSeenPlayer = 0;
+
+            // Attack behaviour
+            fighter.Attack(player);
+
+            // in order to aggrevate enemy friends,
+            // the enemy itself must be aggrevated already
+            AggrevateNearbyEnemies();
+        }
+
+        private void AggrevateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+            // loops over all the hits
+            // find any enemy components
+            // aggrevate those enemies
+            foreach (var hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                if (ai == null) { continue; }
+                ai.Aggrevate();
+            }
+        }
+
+        private void SuspicionBehaviour()
+        {
+            actionScheduler.CancelCurrentAction();
+        }
+
+        [SerializeField] float aggrevatedDuration = 5f;
+        float aggrevated = Mathf.Infinity;
+
+        public void Aggrevate()
+        {
+            // sets the aggrevated timer
+            aggrevated = 0;
         }
 
         private void PatrolBehaviour()
@@ -138,9 +178,21 @@ namespace RPG.Control
             Gizmos.DrawWireSphere(transform.position, chaseDistance);
         }
 
-        private bool InAttackRange()
+        private bool IsAggrevated()
         {
-            return Vector3.Distance(player.transform.position, transform.position) < chaseDistance;
+            // has aggrevated timer expired yet
+            // if its been a while, then don't be aggrevated anymore
+
+            // might need to change logic to use mathf.infinity instead but we'll see where
+            // testing takes us
+            // if (Time.time - aggrevated > aggrevatedDuration)
+            // {
+            //     return false;
+            // }
+
+
+            return Vector3.Distance(player.transform.position, transform.position) < chaseDistance
+            || aggrevated < aggrevatedDuration;
         }
     }
 }

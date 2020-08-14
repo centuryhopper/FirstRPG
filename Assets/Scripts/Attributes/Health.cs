@@ -57,6 +57,22 @@ namespace RPG.Attributes
             startingHealth = health.value;
         }
 
+        public void Heal(int healthToRestore)
+        {
+            // we should not be able to go past the max health
+            // if (health.value + healthToRestore <= startingHealth)
+            // {
+            //     health.value += healthToRestore;
+            // }
+            // else
+            // {
+            //     health.value = startingHealth;
+            // }
+
+            // more elegant solution
+            health.value = Mathf.Min(health.value + healthToRestore, startingHealth);
+        }
+
         public int GetInitialHealth()
         {
             return baseStats.GetStats(StatEnum.Health);

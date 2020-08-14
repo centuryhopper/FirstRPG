@@ -55,8 +55,14 @@ namespace RPG.SceneManagement
             yield return SceneManager.LoadSceneAsync(sceneIndex);
             // theoretically removes new player controller to avoid glitches
             // TODO may need to call gameobject.find again for the new player
-            // if this doesn't work
+            // if this doesn't work (UPDATE: SO IT ACTUALLY DOESN'T WORK)
+            // playerController.enabled = false;
+
+            // find the playercontroller in the newly loaded scene
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
             playerController.enabled = false;
+
+
 
             // load the the last state of the other world you are going to transition to
             savingWrapper.Load();
@@ -84,7 +90,7 @@ namespace RPG.SceneManagement
 
             // destroys the parent gameobject
             // s.toToggleInPortalClass = true;
-            DestroyParentGameObj();
+            // DestroyParentGameObj();
         }
 
         Portal GetOtherPortal()

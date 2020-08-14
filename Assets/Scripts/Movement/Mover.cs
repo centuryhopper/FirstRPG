@@ -14,11 +14,11 @@ namespace RPG.Movement
     {
         [SerializeField] Transform target;
         [SerializeField] float maxSpeed = 6f;
+        [SerializeField] float maxPathLength = 40;
         NavMeshAgent agent;
         Animator anim;
         Health myHealth;
         ActionScheduler actionScheduler;
-
 
         // interface implementation
         public void Cancel()
@@ -54,6 +54,48 @@ namespace RPG.Movement
             // would cancels attack movement before doing regular movement
             actionScheduler.StartAction(this);
             MoveTo(destination, speedFraction);
+        }
+
+        // checks whether or not the player is close enough to move and attack the enemy
+        public bool CanMoveTo(Vector3 enemyPosition)
+        {
+            NavMeshPath navMeshPath = new NavMeshPath();
+            bool hasPath =
+            NavMesh.CalculatePath
+            (transform.position, enemyPosition, NavMesh.AllAreas, navMeshPath);
+
+            // is there a possible path to the destination
+            if (!hasPath) { return false; }
+            
+            /// <summary>
+            /// eliminates partial paths as well
+            /// and only accepts COMPLETE paths
+            /// </summary>
+            if (navMeshPath.status != NavMeshPathStatus.PathComplete) { return false; }
+
+            // if greater, than that means the destination is too far
+            // than what we want, so return false
+            if (GetPathLength(navMeshPath) > maxPathLength)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private float GetPathLength(NavMeshPath navMeshPath)
+        {
+            // sum up the distance between each corner position from the path
+            // to get the total path length
+            Vector3[] path = navMeshPath.corners;
+            float tot = 0;
+            // stop at the second to last element, so
+            // we can avoid an array indexoutofbounds error
+            for (int i = 0; i < path.Length - 1; ++i)
+            {
+                tot += Vector3.Distance(path[i], path[i + 1]);
+            }
+
+            return tot;
         }
 
         // Do not call this method directly when transitioning the gameobject into movement mode

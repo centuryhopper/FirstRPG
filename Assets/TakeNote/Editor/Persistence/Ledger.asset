@@ -25,3 +25,13 @@ MonoBehaviour:
     IsDeferred: 1
     IsColored: 1
     DrawColor: {r: 0.9528302, g: 0.4837336, b: 0.27416337, a: 1}
+  - Title: portal disappear bug
+    CreationDate: 8/14/2020 | 12:55 PM
+    CompletionDate: 
+    HasDetails: 1
+    Details: Fix issue of portal getting destroyed when loading to a new scene and
+      back
+    IsCompleted: 0
+    IsDeferred: 1
+    IsColored: 1
+    DrawColor: {r: 0.3741487, g: 0.8490566, b: 0.06007475, a: 1}

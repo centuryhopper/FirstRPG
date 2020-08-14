@@ -48,17 +48,22 @@ namespace RPG.Combat
             Instantiate(projectile, properHand.position, Quaternion.identity).SetTarget(target, calculatedDamage, instigator);
         }
 
-        public void SpawnWeapon(Transform leftHand, Transform rightHand, Animator animator)
+        public Weapon SpawnWeapon(Transform leftHand, Transform rightHand, Animator animator)
         {
             // destroy the old weapon in hand (if any exist) before picking up a new one
+            // 'unarmed' counts as a weapon too
             DestroyOldWeapon(leftHand, rightHand);
+
+            Weapon tmpWeapon = null;
 
             if (equippedPrefab != null)
             {
                 Transform handTransform = GetHandTransform(leftHand, rightHand);
 
                 // weapon spawns in hand
-                Instantiate(equippedPrefab, handTransform).gameObject.name = pickedUpWeaponName;
+                tmpWeapon = Instantiate(equippedPrefab, handTransform);
+
+                tmpWeapon.gameObject.name = pickedUpWeaponName;
             }
 
             // will either be null or of type AnimatorOverrideController
@@ -85,6 +90,8 @@ namespace RPG.Combat
                 // which in this case, for all override controllers, will be the punching animation
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
+
+            return tmpWeapon;
         }
 
         private void DestroyOldWeapon(Transform leftHand, Transform rightHand)

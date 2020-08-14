@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using RPG.Control;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
     public class WeaponPickUp : MonoBehaviour, IRaycastable
     {
         [SerializeField] WeaponConfig weapon = null;
+
+        // we can choose what weapons are able to be picked up
+        [SerializeField] int healthToRestore = 0;
 
         [Label("Pickup hiding time")]
         [SerializeField] float secs = 5;
@@ -29,14 +33,24 @@ namespace RPG.Combat
         {
             if (other.tag == "Player")
             {
-                Pickup(other.GetComponent<Fighter>());
+                Pickup(other.gameObject);
             }
         }
 
-        private void Pickup(Fighter fighter)
+        private void Pickup(GameObject subject)
         {
-            print("player has equipped weapon");
-            fighter.EquipWeapon(weapon);
+            if (weapon != null)
+            {
+                print("player has equipped weapon");
+                subject.GetComponent<Fighter>().EquipWeapon(weapon);
+            }
+
+            // if we toggled a positive health restore value in the inspector
+            if (healthToRestore > 0)
+            {
+                subject.GetComponent<Health>().Heal(healthToRestore);
+            }
+            
 
             // despawn and respawn
             StartCoroutine(HideForSeconds(secs));
@@ -70,7 +84,7 @@ namespace RPG.Combat
         {
             if (Input.GetMouseButton(0))
             {
-                Pickup(callingController.GetComponent<Fighter>());
+                Pickup(callingController.gameObject);
             }
             return true;
         }

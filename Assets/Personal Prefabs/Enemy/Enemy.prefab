@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   maxSpeed: 3
+  maxPathLength: 40
 --- !u!1001 &2052969903029558995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,6 +170,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RPG.Control.AIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4656441523803441109}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Aggrevate
+      objectReference: {fileID: 0}
+    - target: {fileID: -8056419859621261600, guid: 46b14ae98e9ba454496541e86a68a5db,
+        type: 3}
+      propertyPath: takeDamageSound.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 303967574442246348, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
       propertyPath: m_Enabled
@@ -274,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 4763185602878197945, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7207249611421009715, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
@@ -284,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 8315390468735499322, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8315390468735499322, guid: 46b14ae98e9ba454496541e86a68a5db,
         type: 3}

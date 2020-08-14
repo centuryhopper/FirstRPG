@@ -24,15 +24,15 @@ public class NullableTypesExamples : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateUser("Brandi", 19, 63);
+        // CreateUser("Brandi", 19, 63);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CreateUser(myName, myAge, myHeight);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     CreateUser(myName, myAge, myHeight);
+        // }
     }
 }

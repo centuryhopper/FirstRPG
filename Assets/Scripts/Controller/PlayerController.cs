@@ -15,6 +15,7 @@ namespace RPG.Control
     {
         CombatTarget combatTarget;
         Health myHealth;
+        Mover mover;
         
         [Serializable]
         struct CursorMapping
@@ -26,7 +27,7 @@ namespace RPG.Control
         
         // should include an element for movement, combat, and none
         [SerializeField] CursorMapping[] cursorMappings = null;
-        [SerializeField] float maxPathLength = 40;
+        [SerializeField] float raycastRadius = 1f;
 
         private void SetCursor(CursorType type)
         {
@@ -42,6 +43,7 @@ namespace RPG.Control
 
         private void Awake()
         {
+            mover = GetComponent<Mover>();
             myHealth = GetComponent<Health>();
         }
 
@@ -80,7 +82,7 @@ namespace RPG.Control
         private RaycastHit[] RaycastAllSorted()
         {
             // Get all hits
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
             float[] distances = new float[hits.Length];
 
             // Sort by distance
@@ -124,11 +126,14 @@ namespace RPG.Control
             bool canHit = RaycastNavMesh(out target);
             if (canHit)
             {
+                // checks if player is close enough
+                if (!mover.CanMoveTo(target)) { return false; }
+
                 if (Input.GetMouseButton(0))
                 {
                     // cancel fighting and start regular movement action
                     // GetComponent<Fighter>().Cancel();
-                    GetComponent<Mover>().StartMoveAction(target, 1f);
+                    mover.StartMoveAction(target, 1f);
                 }
                 SetCursor(CursorType.Movement);
                 return true;
@@ -155,47 +160,13 @@ namespace RPG.Control
             if (hasNearestPoint)
             {
                 target = navMeshHit.position;
-                NavMeshPath navMeshPath = new NavMeshPath();
-                bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, navMeshPath);
-                if (!hasPath) { return false; }
-                
-                /// <summary>
-                /// eliminates partial paths as well
-                /// and only accepts COMPLETE paths
-                /// </summary>
-                if (navMeshPath.status != NavMeshPathStatus.PathComplete)
-                {
-                    return false;
-                }
-
-                // if greater, than that means the destination is too far
-                // than what we want, so return false
-                if (GetPathLength(navMeshPath) > maxPathLength)
-                {
-                    return false;
-                }
+                if(!mover.CanMoveTo(target)) { return false; }
 
                 return true;
             }
 
             // if we the area is not clickable
             return false;
-        }
-
-        private float GetPathLength(NavMeshPath navMeshPath)
-        {
-            // sum up the distance between each corner position from the path
-            // to get the total path length
-            Vector3[] path = navMeshPath.corners;
-            float tot = 0;
-            // stop at the second to last element, so
-            // we can avoid an array indexoutofbounds error
-            for (int i = 0; i < path.Length - 1; ++i)
-            {
-                tot += Vector3.Distance(path[i], path[i + 1]);
-            }
-
-            return tot;
         }
     }
 }

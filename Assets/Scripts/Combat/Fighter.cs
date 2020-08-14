@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
@@ -17,6 +18,7 @@ namespace RPG.Combat
         float timeSinceLastAttack = 0f;
         Health target;
         Animator anim;
+        Mover mover;
         [SerializeField] Transform rightHand = null;
         [SerializeField] Transform leftHand = null;
 
@@ -25,17 +27,25 @@ namespace RPG.Combat
         // [SerializeField] string defaultWeaponName = "Unarmed";
 
         // this will be used throughout the script
-        LazyValue<WeaponConfig> currentWeapon = null;
+        WeaponConfig currentWeaponConfig = null;
+
+        // we need a reference to the weapon in order to link a sound from the fighter
+        // to the weapon
+        LazyValue<Weapon> currentWeapon;
 
         private void Awake()
         {
+            currentWeaponConfig = defaultWeapon;
+            currentWeapon = new LazyValue<Weapon>(SetUpDefaultWeapon);
             anim = GetComponent<Animator>();
-            currentWeapon = new LazyValue<WeaponConfig>(SetUpDefaultWeapon);
+            mover = GetComponent<Mover>();
+            // currentWeaponConfig = new LazyValue<WeaponConfig>(SetUpDefaultWeapon);
         }
 
         void Start()
         {
             // makes sure currentWeapon.value has a valid value
+            // AttachWeapon(currentWeaponConfig);
             currentWeapon.ForceInit();
         }
 
@@ -44,23 +54,22 @@ namespace RPG.Combat
             return target == null ? null : target;
         }
 
-        public WeaponConfig SetUpDefaultWeapon()
+        public Weapon SetUpDefaultWeapon()
         {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            return AttachWeapon(defaultWeapon);
         }
 
-        public void AttachWeapon(WeaponConfig myWeapon)
+        public Weapon AttachWeapon(WeaponConfig myWeapon)
         {
             // we always pass in the transforms of both hands
             // so that the Weapon script can use either or at its disposal
-            myWeapon.SpawnWeapon(leftHand, rightHand, anim);
+            return myWeapon.SpawnWeapon(leftHand, rightHand, anim);
         }
 
         public void EquipWeapon(WeaponConfig myWeapon)
         {
-            currentWeapon.value = myWeapon;
-            AttachWeapon(myWeapon);
+            currentWeaponConfig = myWeapon;
+            currentWeapon.value = AttachWeapon(myWeapon);
         }
 
         // animations happen in update,
@@ -71,19 +80,18 @@ namespace RPG.Combat
         {
             timeSinceLastAttack += Time.deltaTime;
 
-            if (target != null && currentWeapon != null)
+            if (target != null && currentWeaponConfig != null)
             {
-                bool isInRange = Vector3
-                .Distance(target.transform.position, transform.position) < currentWeapon.value.weaponRange;
+                bool isInRange = GetIsInRange(target.transform);
 
                 if (!isInRange)
                 {
-                    GetComponent<Mover>().MoveTo(target.transform.position, 1f);
+                    mover.MoveTo(target.transform.position, 1f);
                 }
                 else
                 {
                     // stop moving and start attacking
-                    GetComponent<Mover>().Cancel();
+                    mover.Cancel();
                     AttackBehaviour();
                 }
             }
@@ -93,6 +101,12 @@ namespace RPG.Combat
             }
         }
 
+        private bool GetIsInRange(Transform targetTransform)
+        {
+            return Vector3
+            .Distance(targetTransform.position, transform.position) < currentWeaponConfig.weaponRange;
+        }
+
         void Hit()
         {
             if (target == null || target.show_current_health <= 0) return;
@@ -100,11 +114,16 @@ namespace RPG.Combat
             // calculate damage
             int doDamage = GetComponent<BaseStats>().GetStats(StatEnum.Damage);
 
-            if (currentWeapon.value.HasProjectile())
+            if (currentWeapon.value != null)
+            {
+                currentWeapon.value.OnHit();
+            }
+
+            if (currentWeaponConfig.HasProjectile())
             {
                 print("launched projectile at target: " + target.gameObject.name);
 
-                currentWeapon.value.LaunchProjectile(leftHand, rightHand, target, this.gameObject, doDamage);
+                currentWeaponConfig.LaunchProjectile(leftHand, rightHand, target, this.gameObject, doDamage);
             }
             else
             {
@@ -148,7 +167,14 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combTarg)
         {
             if (combTarg == null) { return false; }
-            return combTarg.GetComponent<Health>() != null && !combTarg.GetComponent<Health>().isDead;
+            if (!mover.CanMoveTo(combTarg.transform.position)
+                && !GetIsInRange(combTarg.transform))
+            {
+                return false;
+            }
+
+            return combTarg.GetComponent<Health>() != null
+                    && !combTarg.GetComponent<Health>().isDead;
         }
 
         private void StopAttack()
@@ -169,9 +195,9 @@ namespace RPG.Combat
         public object CaptureState()
         {
             // get the most recent weapon name and save it for future use
-            if (currentWeapon != null)
+            if (currentWeaponConfig != null)
             {
-                return currentWeapon.value.name;
+                return currentWeaponConfig.name;
             }
 
             return "no_name";
@@ -195,7 +221,7 @@ namespace RPG.Combat
             // so we have to make this check
             if (stat == StatEnum.Damage)
             {
-                yield return currentWeapon.value.weaponDamage;
+                yield return currentWeaponConfig.weaponDamage;
             } 
         }
 
@@ -205,7 +231,7 @@ namespace RPG.Combat
             // so we have to make this check
             if (stat == StatEnum.Damage)
             {
-                yield return currentWeapon.value.percentageBonus;
+                yield return currentWeaponConfig.percentageBonus;
             }
         }
     }
