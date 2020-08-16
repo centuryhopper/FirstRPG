@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\Cinematic Scripts\FakePlayableDirector.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
+     <Compile Include="Assets\Scripts\Playground\Event practice\Static events\static event way\ClickableBoxStaticEvent.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\MeshContainer.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\StructExample.cs" />
      <Compile Include="Assets\Scripts\Saving\SavingSystem.cs" />
@@ -147,7 +148,9 @@
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
      <Compile Include="Assets\Scripts\Controller\CursorType.cs" />
      <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScoreManager0.cs" />
-     <Compile Include="Assets\Scripts\Playground\Event practice\Static events\static event way\ClickableBoxStaticEvent.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\Question.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionCollection.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionLoader.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -159,6 +162,7 @@
      <None Include="Assets\Asset Packs\Animations by Explosive\README - Usage Rights for these assets 1.txt" />
      <None Include="Assets\Empty At Zero Creator\Documentation\How To Customize.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\JsonDotNet\link.xml" />
      <None Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -367,6 +371,9 @@
     </Reference>
     <Reference Include="UnityEditor">
         <HintPath>/Applications/Unity/Hub/Editor/2020.1.0f1/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+        <HintPath>/Users/leozhang/Desktop/Unity RPG intermediate/RPG/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>/Applications/Unity/Hub/Editor/2020.1.0f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

@@ -1,0 +1,13 @@
+{
+    "questions": [
+        {
+            "text": "what month is my birthday?",
+            "answer": "september"
+        },
+        {
+            "text": "how are you?",
+            "answer": "fine, thanks :D"
+        }
+    ],
+    "collectionName": "samples"
+}
