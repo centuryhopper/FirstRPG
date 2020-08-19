@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -41,6 +41,7 @@
      <Compile Include="Assets\Scripts\Controller\PatrolPath.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\CubeSpawner.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\IPooledObject.cs" />
+     <Compile Include="Assets\Scripts\Playground\Mysql C#\mysqlPractice.cs" />
      <Compile Include="Assets\Scripts\Playground\C#Test\IEnumerablePractice.cs" />
      <Compile Include="Assets\Scripts\Saving\ISaveable.cs" />
      <Compile Include="Assets\Scripts\Controller\AIController.cs" />
@@ -48,6 +49,7 @@
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\AsyncAwait.cs" />
      <Compile Include="Assets\Scripts\Stats\IModifierProvider.cs" />
      <Compile Include="Assets\Scripts\Playground\Event practice\Static events\tightly coupled way\ClickableBox.cs" />
+     <Compile Include="Assets\Scripts\Playground\FileHandling\WriteBytes.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledSpace.cs" />
      <Compile Include="Assets\Scripts\ShootRay.cs" />
      <Compile Include="Assets\Scripts\Stats\BaseStats.cs" />
@@ -99,6 +101,7 @@
      <Compile Include="Assets\Scripts\Controller\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\TrigFunctions.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\CalculateAim.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\Question.cs" />
      <Compile Include="Assets\Scripts\Playground\Trigonometry\CubeWave.cs" />
      <Compile Include="Assets\Scripts\Playground\Event practice\Static events\ParticleController.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
@@ -120,10 +123,12 @@
      <Compile Include="Assets\Scripts\Stats\Experiences.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
      <Compile Include="Assets\Scenes\5 ways to reference gameobjects\FindObjectofType.cs" />
+     <Compile Include="Assets\Scripts\Playground\UnsafeLinkedList.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\Indexers.cs" />
      <Compile Include="Assets\Scripts\Controller\IRaycastable.cs" />
      <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScriptableObjWay.cs" />
      <Compile Include="Assets\Scripts\Attributes\HealthDisplay.cs" />
+     <Compile Include="Assets\Scripts\Playground\Async programming\AsyncProgramming.cs" />
      <Compile Include="Assets\Scripts\Stats\Progression.cs" />
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\FuncExample.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
@@ -132,7 +137,9 @@
      <Compile Include="Assets\Scripts\Playground\ObjectPoolScripts\ColorController.cs" />
      <Compile Include="Assets\Scripts\UI\Damage Text\DamageTextSpawner.cs" />
      <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionLoader.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
+     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionCollection.cs" />
      <Compile Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
      <Compile Include="Assets\Scripts\Stats\ExperiencesDisplay.cs" />
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
@@ -148,9 +155,6 @@
      <Compile Include="Assets\Asset Packs\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
      <Compile Include="Assets\Scripts\Controller\CursorType.cs" />
      <Compile Include="Assets\Scenes\5 ways to reference gameobjects\ScoreManager0.cs" />
-     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\Question.cs" />
-     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionCollection.cs" />
-     <Compile Include="Assets\Scripts\Playground\Reading&amp;Serializing JSON\QuestionLoader.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -161,6 +165,7 @@
      <None Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\Asset Packs\Animations by Explosive\README - Usage Rights for these assets 1.txt" />
      <None Include="Assets\Empty At Zero Creator\Documentation\How To Customize.txt" />
+     <None Include="Assets\Scripts\Playground\FileHandling\ByteToText.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\JsonDotNet\link.xml" />
      <None Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
@@ -175,6 +180,7 @@
      <None Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Empty At Zero Creator\Documentation\Demo Scene Infos.txt" />
+     <None Include="Assets\mcs.rsp" />
      <None Include="Assets\Asset Packs\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Empty At Zero Creator\Documentation\Release Notes.txt" />

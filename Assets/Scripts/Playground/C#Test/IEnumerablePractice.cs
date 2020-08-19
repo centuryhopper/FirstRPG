@@ -17,7 +17,7 @@ public class IEnumerablePractice
     public static IEnumerable<int> myFilter1(IEnumerable<int> input)
     {
         // DeMorgan's law
-        // not (x % 7 == 0 && x > 75) ==> (x % 7 != 0 || x <= 75) 
+        // not (x % 7 == 0 && x > 75) ==> (x % 7 != 0 || x <= 75)
 
         // filter the sequence, then apply something to each value, then filter again
         return input
@@ -42,61 +42,57 @@ public class IEnumerablePractice
 
     static double[] data = new double[10000000];
 
-    static string text = "<div id=\"text\">";
+    static string divBegin = "<div id=\"text\">";
     static string divEnd = "</div>";
 
     // [RuntimeInitializeOnLoadMethod]
     static void MainMethod()
     {
+        try
+        {
+            WebClient wc = new WebClient();
+            string htmlData =
+            wc.DownloadString("http://rickleinecker.com/Rick-Leinecker-Magazine-Articles-and-Writing.html");
 
-        string searchString = "k";
-        string s1 = "seek" ;
-        string s2 = "leineker";
+            print(htmlData);
 
-        // returns the index of the a specified string.
-        // the specified starting index is used to improved search times
-        // for super long strings e.g. if I want ot search for "f" in "abcdefg",
-        // i can say "abcdefg".indexOf("f", 4), which would start the search at "e" instead
-        // of "abcdefg".indexOf("f"), which would start the search at "a"
-        // print(s1.IndexOf(searchString, 0));
-        // print(s2.IndexOf(searchString, 3));
+            int index = htmlData.IndexOf(divBegin);
 
-        // print("abcdefg".IndexOf("f"));
+            while (index >= 0)
+            {
+                int endIndex = htmlData.IndexOf(divEnd, index);
 
-        print("leooo".LastIndexOf("o"));
+                // information between the beginning div and end div tag
+                string fText =
+                htmlData.Substring(index + divBegin.Length, endIndex - (index + divBegin.Length)).Trim();
+
+                String[] words = fText.Split(' ');
+
+                // check if 'Compute' was there
+                if (words[0][0] != 'C')
+                    break;
+
+                print("Magazine:" + words[0] + ", Number:" + words[1] + ", Date:" + words[2]);
+
+                /// <summary>
+                /// moves to the next div tag
+                /// </summary>
+                /// <returns></returns>
+                index = htmlData.IndexOf(divBegin, endIndex);
+            }
+        }
+        catch(Exception e)
+        {
+            print(e.StackTrace);
+            return;
+        }
 
 
+    }
 
-        // try
-        // {
-        //     WebClient wc = new WebClient();
-        //     string htmlData = 
-        //     wc.DownloadString("http://rickleinecker.com/Rick-Leinecker-Magazine-Articles-and-Writing.html");
+    #region
 
-        //     int index = htmlData.IndexOf(text);
-
-        //     while (index >= 0)
-        //     {
-        //         int endIndex = htmlData.IndexOf(divEnd, index);
-        //         string fText = htmlData.Substring(index + text.Length, endIndex - (index + text.Length)).Trim();
-
-        //         String[] words = fText.Split(' ');
-
-        //         if (words[0][0] != 'C')
-        //             break;
-
-        //         print("Magazine:" + words[0] + ", Number:" + words[1] + ", Date:" + words[2]);
-
-        //         index = htmlData.IndexOf(text, endIndex);
-        //     }
-        // }
-        // catch(Exception e)
-        // {
-        //     print(e.StackTrace);
-        //     return;
-        // }
-
-        // #1
+    // #1
         // Important to seed with 5 for repeatability.
         // System.Random rnd = new System.Random(5);
 
@@ -160,7 +156,8 @@ public class IEnumerablePractice
         // stopwatch.Stop();
 
         // print("time in miliseconds: " + stopwatch.ElapsedMilliseconds);
-    }
+
+    #endregion
 
     static void LongTask(int startingIndex, int reps)
     {
@@ -176,6 +173,23 @@ public class IEnumerablePractice
         UnityEngine.Debug.Log(msg);
     }
 }
+
+
+// string searchString = "k";
+// string s1 = "seek" ;
+// string s2 = "leineker";
+
+// returns the index of the a specified string.
+// the specified starting index is used to improved search times
+// for super long strings e.g. if I want ot search for "f" in "abcdefg",
+// i can say "abcdefg".indexOf("f", 4), which would start the search at "e" instead
+// of "abcdefg".indexOf("f"), which would start the search at "a"
+// print(s1.IndexOf(searchString, 0));
+// print(s2.IndexOf(searchString, 3));
+
+// print("abcdefg".IndexOf("f"));
+
+// print("leooo".LastIndexOf("o"));
 
 // using System;
 // using System.Collections.Generic;
