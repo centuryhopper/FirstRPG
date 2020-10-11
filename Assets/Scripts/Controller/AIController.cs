@@ -50,7 +50,7 @@ namespace RPG.Control
             actionScheduler = GetComponent<ActionScheduler>();
             initialPos = new LazyValue<Vector3>(GetGuardPosition);
         }
-        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -90,7 +90,7 @@ namespace RPG.Control
 
         private void AttackBehaviour()
         {
-            print(gameObject.name + " is chasing the player");
+            // print(gameObject.name + " is chasing the player");
             timeLastSeenPlayer = 0;
 
             // Attack behaviour

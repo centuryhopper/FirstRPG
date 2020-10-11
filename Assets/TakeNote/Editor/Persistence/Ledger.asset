@@ -12,8 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757c7930830877b47944add6103cde80, type: 3}
   m_Name: Ledger
   m_EditorClassIdentifier: 
-  OutstandingTasks: []
-  CompletedTasks: []
+  OutstandingTasks:
+  - Title: create a new project and carry everything over
+    CreationDate: 8/21/2020 | 1:28 PM
+    CompletionDate: 
+    HasDetails: 0
+    Details: 
+    IsCompleted: 0
+    IsDeferred: 0
+    IsColored: 1
+    DrawColor: {r: 0.754717, g: 0.2171591, b: 0.2171591, a: 1}
+  CompletedTasks:
+  - Title: Create a navmesh agent for sandbox one
+    CreationDate: 8/21/2020 | 2:47 AM
+    CompletionDate: 8/21/2020 | 1:28 PM
+    HasDetails: 0
+    Details: 
+    IsCompleted: 1
+    IsDeferred: 0
+    IsColored: 0
+    DrawColor: {r: 0.7735849, g: 0.6969562, b: 0.6969562, a: 1}
   DeferredTasks:
   - Title: tune the fireball!
     CreationDate: 8/2/2020 | 12:19 PM

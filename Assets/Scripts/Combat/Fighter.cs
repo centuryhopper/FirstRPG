@@ -97,7 +97,7 @@ namespace RPG.Combat
             }
             else
             {
-                print("you either have no attack target or no weapon assigned");
+                // print("you either have no attack target or no weapon assigned");
             }
         }
 
@@ -222,7 +222,7 @@ namespace RPG.Combat
             if (stat == StatEnum.Damage)
             {
                 yield return currentWeaponConfig.weaponDamage;
-            } 
+            }
         }
 
         public IEnumerable<float> GetPercentageModifiers(StatEnum stat)
